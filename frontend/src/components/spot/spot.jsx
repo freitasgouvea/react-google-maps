@@ -23,6 +23,7 @@ export default class SpotCrud extends Component {
 
     componentWillMount() {
         axios(baseUrl).then(resp => {
+            resp.data.sort((a, b) => b.id - a.id);
             this.setState({ list: resp.data })
         })
     }
@@ -48,7 +49,8 @@ export default class SpotCrud extends Component {
 
     getUpdatedList(spot) {
         const list = this.state.list.filter(s => s.id !== spot.id)
-        list.unshift(spot)
+        list.push(spot)
+        list.sort((a, b) => b.id - a.id);
         return list
     }
 
