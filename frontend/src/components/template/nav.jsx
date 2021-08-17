@@ -8,11 +8,14 @@ export default props =>
             <Link to="/">
                 <i className="fa fa-home"></i> Início
             </Link>
+            <Link to="/spot">
+                <i className="fa fa-map-pin"></i> Pontos
+            </Link>
             <Link to="/map">
                 <i className="fa fa-map"></i> Mapa
             </Link>
-            <Link to="/spot">
-                <i className="fa fa-map-pin"></i> Pontos
+            <Link to="/traffic">
+                <i className="fa fa-car"></i> Trânsito
             </Link>
         </nav>
     </aside>

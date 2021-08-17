@@ -5,13 +5,13 @@ import Main from '../template/main'
 const headerProps = {
     icon: 'map-pin',
     title: 'Pontos',
-    subtitle: 'home/spots'
+    subtitle: '/spots'
 }
 
 const baseUrl = 'http://localhost:3001/spots'
 
 const initialState = {
-    spot: { serialNumber: '', address: '', lat: '', lng: '', maxHeight: '' },
+    spot: { type: '', address: '', cordinates: { lat: '', lng: '' }, maxHeight: '' },
     list: [],
     formVisible: false,
     listVisible: true
@@ -60,50 +60,81 @@ export default class SpotCrud extends Component {
         this.setState({ spot })
     }
 
+    updateCordinateField(event) {
+        const cordinates = { ...this.state.spot.cordinates }
+        cordinates[event.target.name] = event.target.value
+        this.setState({ spot: { cordinates } })
+    }
+
     renderForm() {
         if (this.state.formVisible) {
             return (
-                <div>
-                    <div className="form">
-                        <div className="row">
-                            <div className="col-12 col-md-12">
-                                <div className="form-group">
-                                    <label>Endereço</label>
-                                    <input type="text" className="form-control" name="address"
-                                        value={this.state.spot.address}
-                                        onChange={e => this.updateField(e)}
-                                        placeholder="Endereço do Ponto" />
+                <div className="row">
+                    <div className="col-6">
+                        <div ref={(ref) => { this.googleMapDiv = ref }} style={{ height: '66vh', width: '100%' }}></div>
+                    </div>
+                    <div className="col-6">
+                        <div className="form">
+                            <div className="row">
+                                <div className="col-9 col-md-9">
+                                    <div className="form-group">
+                                        <label>Endereço</label>
+                                        <input type="text" className="form-control" name="address"
+                                            value={this.state.spot.address}
+                                            onChange={e => this.updateField(e)}
+                                            placeholder="Endereço do Ponto" />
+                                    </div>
                                 </div>
-                            </div>
-                            <div className="col-6 col-md-6">
-                                <div className="form-group">
-                                    <label>Serial Number</label>
-                                    <input type="text" className="form-control" name="serialNumber"
-                                        value={this.state.spot.serialNumber}
-                                        onChange={e => this.updateField(e)}
-                                        placeholder="Serial Number do Equipamento" />
+                                <div className="col-3 col-md-3">
+                                    <div className="form-group">
+                                        <label>Tipo</label>
+                                        <select className="form-control" name="type"
+                                            value={this.state.spot.type}
+                                            onChange={e => this.updateField(e)}>
+                                            <option value="">Selecionar</option>
+                                            <option value="spot">spot</option>
+                                        </select>
+                                    </div>
                                 </div>
-                            </div>
-                            <div className="col-6 col-md-6">
-                                <div className="form-group">
-                                    <label>Altura Máxima</label>
-                                    <input type="number" className="form-control" name="maxHeight"
-                                        value={this.state.spot.maxHeight}
-                                        onChange={e => this.updateField(e)}
-                                        placeholder="Altura Máxima do Ponto" />
+                                <div className="col-4 col-md-4">
+                                    <div className="form-group">
+                                        <label>Latidude</label>
+                                        <input type="text" className="form-control" name="lat"
+                                            value={this.state.spot.cordinates.lat}
+                                            onChange={e => this.updateCordinateField(e)}
+                                            placeholder="Latitude do Ponto" />
+                                    </div>
+                                </div>
+                                <div className="col-4 col-md-4">
+                                    <div className="form-group">
+                                        <label>Longitude</label>
+                                        <input type="text" className="form-control" name="lng"
+                                            value={this.state.spot.cordinates.lng}
+                                            onChange={e => this.updateCordinateField(e)}
+                                            placeholder="Longitude do Ponto" />
+                                    </div>
+                                </div>
+                                <div className="col-4 col-md-4">
+                                    <div className="form-group">
+                                        <label>Altura Máxima</label>
+                                        <input type="number" className="form-control" name="maxHeight"
+                                            value={this.state.spot.maxHeight}
+                                            onChange={e => this.updateField(e)}
+                                            placeholder="Altura Máxima do Ponto" />
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <hr />
-                    <div className="row">
-                        <div className="col-12 d-flex justify-content-end">
-                            <button className="btn btn-primary" onClick={e => this.save(e)}>
-                                Salvar
-                            </button>
-                            <button className="btn btn-secondary ml-2" onClick={e => this.clear(e)}>
-                                Cancelar
-                            </button>
+                        <hr />
+                        <div className="row">
+                            <div className="col-12 d-flex justify-content-end">
+                                <button className="btn btn-primary" onClick={e => this.save(e)}>
+                                    Salvar
+                                </button>
+                                <button className="btn btn-secondary ml-2" onClick={e => this.clear(e)}>
+                                    Cancelar
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -164,8 +195,8 @@ export default class SpotCrud extends Component {
                 <tr key={spot.id}>
                     <td>{spot.id}</td>
                     <td>{spot.address}</td>
-                    <td>{spot.lat}</td>
-                    <td>{spot.lng}</td>
+                    <td>{spot.cordinates.lat}</td>
+                    <td>{spot.cordinates.lng}</td>
                     <td>{spot.maxHeight}</td>
                     <td>
                         <button className="btn btn-warning"

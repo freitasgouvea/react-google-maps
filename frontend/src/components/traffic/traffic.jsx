@@ -4,9 +4,9 @@ import Main from '../template/main'
 import { Loader } from '@googlemaps/js-api-loader';
 
 const headerProps = {
-    icon: 'map',
-    title: 'Mapa',
-    subtitle: '/map'
+    icon: 'car',
+    title: 'Trânsito',
+    subtitle: '/traffic'
 }
 
 const baseUrl = 'http://localhost:3001/spots'
@@ -17,14 +17,12 @@ const loader = new Loader({
     libraries: ["places"]
 });
 
-export default class Map extends Component {
+export default class Traffic extends Component {
     constructor(props) {
         super(props);
         this.state = {
             spot: { type: '', address: '', cordinates: { lat: '', lng: '' }, maxHeight: '' },
-            list: [],
-            google: '',
-            map: ''
+            list: []
         };
     }
     componentDidMount() {
@@ -43,13 +41,8 @@ export default class Map extends Component {
             const map = new google.maps.Map(
                 this.googleMapDiv,
                 defaultMapOptions);
-            for (const i of this.state.list) {
-                new google.maps.Marker({
-                    position: i.cordinates,
-                    map,
-                    title: i.address,
-                });
-            }
+            const trafficLayer = new google.maps.TrafficLayer();
+            trafficLayer.setMap(map);
             this.setState({
                 google: google,
                 map: map
