@@ -32,20 +32,20 @@
     },
     {
       "type": "spot",
-      "address": "Av. Marginal Tietê, 127",
+      "address": "Av. Marginal Tietê, 3704",
       "cordinates": {
-        "lat": -23.507684011732547,
-        "lng": -46.71587026870858
+        "lat": -23.50796133171728,
+        "lng": -46.710452206498495
       },
       "maxHeight": "430",
       "id": 4
     },
     {
       "type": "spot",
-      "address": "Av. Pres. Castelo Branco, 868",
+      "address": "Av. Santos Dumont, 758",
       "cordinates": {
-        "lat": -23.519770917114677,
-        "lng": -46.626723196333096
+        "lat": -23.522407343493597,
+        "lng": -46.63032808524911
       },
       "maxHeight": "380",
       "id": 5
@@ -109,6 +109,16 @@
       },
       "maxHeight": "520",
       "id": 11
+    },
+    {
+      "type": "report",
+      "address": "Av. Higienópolis, 529 - Higienópolis",
+      "cordinates": {
+        "lat": -23.54347,
+        "lng": -46.6569891
+      },
+      "maxHeight": "0",
+      "id": 12
     }
   ]
 }

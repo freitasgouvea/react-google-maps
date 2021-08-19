@@ -37,17 +37,21 @@ export default class SpotCrud extends Component {
     }
 
     initMap() {
-        var cordinates
-        var defaultMapOptions = {
+        let cordinates
+        let defaultMapOptions = {
             center: {
                 lat: -23.5489,
                 lng: -46.6388
             },
             zoom: 15,
-            clickableIcons: false
+            clickableIcons: false,
+            disableDefaultUI: true,
+            fullscreenControl: true,
+            zoomControl: true,
+            scaleControl: true
         }
-        if (this.state.spot.cordinates.lat !== 0 && this.state.spot.cordinates.lng !== 0) {
-            defaultMapOptions.center = {
+        if (this.state.spot.id) {
+            defaultMapOptions['center'] = {
                 lat: parseFloat(this.state.spot.cordinates.lat),
                 lng: parseFloat(this.state.spot.cordinates.lng)
             }
@@ -103,7 +107,7 @@ export default class SpotCrud extends Component {
                 const lat = this.marker.getPosition().lat();
                 const lng = this.marker.getPosition().lng();
                 const cord = { lat: lat, lng: lng }
-                this.updateCordinates(cord);
+                this.updateCospotrdinates(cord);
                 const geocoder = new google.maps.Geocoder();
                 geocoder.geocode({ location: { lat: lat, lng: lng } }, (res) => {
                     if (res == null || res.length === 0) {
@@ -243,7 +247,7 @@ export default class SpotCrud extends Component {
             return (
                 <div className="row">
                     <div className="col-6">
-                        <input className="form-control form-control-sm col-6" type="text" ref={ref => this.addressInput = ref} />
+                        <input className="form-control form-control-sm" type="text" placeholder="Pesquisar" ref={ref => this.addressInput = ref} />
                         <div ref={(ref) => { this.googleMapDiv = ref }} style={{ height: '66vh', width: '100%' }}></div>
                     </div>
                     <div className="col-6">
@@ -318,8 +322,11 @@ export default class SpotCrud extends Component {
         }
     }
 
-    load(spot) {
-        this.setState({ spot, formVisible: true, listVisible: false })
+    load(spotParam) {
+        this.setState({ spot: spotParam, formVisible: true, listVisible: false })
+        setTimeout(()=>{
+            this.initMap()
+        },100);
     }
 
     remove(spot) {
