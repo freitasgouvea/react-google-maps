@@ -2,27 +2,33 @@
   "spots": [
     {
       "id": 1,
-      "serialNumber": "SN001",
       "address": "Rua Augusta, 1000",
-      "lat": 0,
-      "lng": 0,
-      "maxHeight": "100"
+      "cordinates": {
+        "lat": -23.5532996,
+        "lng": -46.65526729999999
+      },
+      "maxHeight": "100",
+      "type": "spot"
     },
     {
       "id": 2,
-      "serialNumber": "SN002",
       "address": "Rua da Consolação, 1000",
-      "lat": 0,
-      "lng": 0,
-      "maxHeight": 100
+      "cordinates": {
+        "lat": -23.5483503,
+        "lng": -46.6509195
+      },
+      "maxHeight": 100,
+      "type": "spot"
     },
     {
       "id": 3,
-      "serialNumber": "SN003",
       "address": "Rua Direita, 100",
-      "lat": 0,
-      "lng": 0,
-      "maxHeight": 100
+      "cordinates": {
+        "lat": -23.5484749,
+        "lng": -46.6348553
+      },
+      "maxHeight": "100",
+      "type": "spot"
     }
   ]
 }

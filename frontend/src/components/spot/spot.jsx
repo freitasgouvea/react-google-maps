@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios'
 import Main from '../template/main'
+import { Loader } from '@googlemaps/js-api-loader';
 
 const headerProps = {
     icon: 'map-pin',
@@ -10,22 +11,98 @@ const headerProps = {
 
 const baseUrl = 'http://localhost:3001/spots'
 
+const loader = new Loader({
+    apiKey: "AIzaSyBTdaly7le-SH4H3nEofhl2UEWWYpX0WJE",
+    version: "weekly",
+    libraries: ["places"]
+});
+
 const initialState = {
-    spot: { type: '', address: '', cordinates: { lat: '', lng: '' }, maxHeight: '' },
+    spot: { type: '', address: '', cordinates: { lat: 0, lng: 0 }, maxHeight: '' },
     list: [],
     formVisible: false,
-    listVisible: true
+    listVisible: true,
+    marker: {}
 }
 
 export default class SpotCrud extends Component {
 
     state = { ...initialState }
 
-    componentWillMount() {
+    componentDidMount() {
         axios(baseUrl).then(resp => {
             resp.data.sort((a, b) => b.id - a.id);
             this.setState({ list: resp.data })
         })
+    }
+
+    initMap() {
+        const defaultMapOptions = {
+            center: {
+                lat: -23.5489,
+                lng: -46.6388
+            },
+            zoom: 15
+        };
+        loader.load().then((google) => {
+            const map = new google.maps.Map(
+                this.googleMapDiv,
+                defaultMapOptions);
+            var cordinates
+            if (this.state.spot.cordinates.lat !== 0 && this.state.spot.cordinates.lng !== 0) {
+                cordinates = {
+                    lat: parseFloat(this.state.spot.cordinates.lat),
+                    lng: parseFloat(this.state.spot.cordinates.lng)
+                }
+            } else {
+                cordinates = {
+                    lat: parseFloat(defaultMapOptions.center.lat),
+                    lng: parseFloat(defaultMapOptions.center.lng)
+                }
+            }
+            console.log(cordinates)
+            var marker = new google.maps.Marker({
+                position: cordinates,
+                title: this.state.spot.address || 'Selecione um Ponto', 
+                map: map,
+                draggable: true
+            });
+            // map.addListener("center_changed", () => {
+            //     console.log('center change')
+            //     window.setTimeout(() => {
+            //         map.panTo(marker.getPosition());
+            //     }, 3000);
+            // });
+            // map.addListener("click", (mapsMouseEvent) => {
+            //     this.updateCordinates(mapsMouseEvent.latLng);
+            // });
+            // marker.addListener("click", () => {
+            //     console.log('click')
+            //     map.setCenter(marker.getPosition());
+            // });
+            google.maps.event.addListener(map, "click", (event) => {
+                marker.setMap(null);
+                marker = new google.maps.Marker({
+                    position: event.latLng,
+                    title: this.state.spot.address || 'Selecione um Ponto', 
+                    map: map,
+                    draggable: true
+                });
+                this.updateCordinates(event.latLng);
+              });
+            this.setState({
+                google: google,
+                map: map,
+                marker: marker
+            });
+        });
+    }
+
+    updateCordinates(latLng){
+        console.log(latLng)
+        const cordinates = { latLng }
+        this.setState({ spot: { cordinates } })
+        console.log(this.state.spot.cordinates)
     }
 
     clear() {
@@ -33,6 +110,7 @@ export default class SpotCrud extends Component {
     }
 
     add() {
+        this.initMap()
         this.setState({ spot: initialState.spot, formVisible: true, listVisible: false })
     }
 

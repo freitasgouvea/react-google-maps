@@ -14,6 +14,9 @@ export default props =>
             <Link to="/map">
                 <i className="fa fa-map"></i> Mapa
             </Link>
+            <Link to="/route">
+                <i className="fa fa-road"></i> Rotas
+            </Link>
             <Link to="/traffic">
                 <i className="fa fa-car"></i> Trânsito
             </Link>
