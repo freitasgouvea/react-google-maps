@@ -81,19 +81,23 @@ export default class Route extends Component {
                     <div className="col-4 col-md-4">
                         <div className="form-group row align-items-center">
                             <label className="col-3 mt-2" for="origin">Início: </label>
-                            <select className="form-control col-9" name="origin" onChange={e => this.updateRequest(e)}>
+                            <input type="text" className="form-control col-9" name="origin"
+                                onChange={e => this.updateRequest(e)} />
+                            {/* <select className="form-control col-9" name="origin" onChange={e => this.updateRequest(e)}>
                                 <option value="Praça da Sé">Praça da Sé</option>
                                 <option value="Estadio Morumbi">Estadio Morumbi</option>
-                            </select>
+                            </select> */}
                         </div>
                     </div>
                     <div className="col-4 col-md-4">
                         <div className="form-group row align-items-center">
                             <label className="col-3 mt-2">Destino: </label>
-                            <select className="form-control col-9" name="destination" onChange={e => this.updateRequest(e)}>
+                            <input type="text" className="form-control col-9" name="destination"
+                                onChange={e => this.updateRequest(e)} />
+                            {/* <select className="form-control col-9" name="destination" onChange={e => this.updateRequest(e)}>
                                 <option value="Estadio Morumbi">Estadio Morumbi</option>
                                 <option value="Praça da Sé">Praça da Sé</option>
-                            </select>
+                            </select> */}
                         </div>
                     </div>
                     <div className="col-1 col-md-1"></div>

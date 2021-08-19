@@ -1,34 +1,104 @@
 {
   "spots": [
     {
-      "id": 1,
-      "address": "Rua Augusta, 1000",
+      "type": "spot",
+      "address": "Av. Pres. Juscelino Kubitschek, 2014",
       "cordinates": {
-        "lat": -23.5532996,
-        "lng": -46.65526729999999
+        "lat": -23.590494200232232,
+        "lng": -46.68939134530981
       },
-      "maxHeight": "100",
-      "type": "spot"
+      "maxHeight": "200",
+      "id": 4
     },
     {
-      "id": 2,
-      "address": "Rua da Consolação, 1000",
+      "type": "spot",
+      "address": "Av. Tiradentes, 614",
       "cordinates": {
-        "lat": -23.5483503,
-        "lng": -46.6509195
+        "lat": -23.530581682735114,
+        "lng": -46.631911191857036
       },
-      "maxHeight": 100,
-      "type": "spot"
+      "maxHeight": "500",
+      "id": 5
     },
     {
-      "id": 3,
-      "address": "Rua Direita, 100",
+      "type": "spot",
+      "address": "Av. Eng. Billings, 43",
       "cordinates": {
-        "lat": -23.5484749,
-        "lng": -46.6348553
+        "lat": -23.545742233629497,
+        "lng": -46.73560697429042
       },
-      "maxHeight": "100",
-      "type": "spot"
+      "maxHeight": "360",
+      "id": 6
+    },
+    {
+      "type": "spot",
+      "address": "Av. Marginal Tietê, 127",
+      "cordinates": {
+        "lat": -23.507684011732547,
+        "lng": -46.71587026870858
+      },
+      "maxHeight": "430",
+      "id": 7
+    },
+    {
+      "type": "spot",
+      "address": "Av. Pres. Castelo Branco, 868",
+      "cordinates": {
+        "lat": -23.519770917114677,
+        "lng": -46.626723196333096
+      },
+      "maxHeight": "380",
+      "id": 8
+    },
+    {
+      "type": "spot",
+      "address": "Viaduto Santa Ifigênia, 89",
+      "cordinates": {
+        "lat": -23.54341361418276,
+        "lng": -46.635270212936405
+      },
+      "maxHeight": "620",
+      "id": 9
+    },
+    {
+      "type": "report",
+      "address": "Av. Dr. Arnaldo, 1115",
+      "cordinates": {
+        "lat": -23.552763599072264,
+        "lng": -46.674443679031626
+      },
+      "maxHeight": "0",
+      "id": 10
+    },
+    {
+      "type": "report",
+      "address": "R. José Bonifácio, 367",
+      "cordinates": {
+        "lat": -23.547877121452434,
+        "lng": -46.631289814758304
+      },
+      "maxHeight": "0",
+      "id": 11
+    },
+    {
+      "type": "report",
+      "address": "R. Santa Isabel, 232",
+      "cordinates": {
+        "lat": -23.54268392298932,
+        "lng": -46.64789805297852
+      },
+      "maxHeight": "0",
+      "id": 12
+    },
+    {
+      "type": "spot",
+      "address": "R. Gabus Mendes, 26 - República, São Paulo - SP, 01043-010, Brazil",
+      "cordinates": {
+        "lat": -23.544454354599193,
+        "lng": -46.64313444976807
+      },
+      "maxHeight": "650",
+      "id": 13
     }
   ]
 }
