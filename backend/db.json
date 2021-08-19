@@ -109,16 +109,6 @@
       },
       "maxHeight": "520",
       "id": 11
-    },
-    {
-      "type": "report",
-      "address": "Rua Peixoto Gomide, 9",
-      "cordinates": {
-        "lat": -23.5539749,
-        "lng": -46.655794
-      },
-      "maxHeight": "0",
-      "id": 12
     }
   ]
 }

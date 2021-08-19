@@ -182,9 +182,6 @@ export default class SpotCrud extends Component {
         });
     }
 
-    // searchAddress(input) {
-    // }
-
     updateCordinates(latLng) {
         const spot = { ...this.state.spot }
         spot['cordinates'] = { lat: latLng.lat, lng: latLng.lng }
@@ -246,7 +243,7 @@ export default class SpotCrud extends Component {
             return (
                 <div className="row">
                     <div className="col-6">
-                        <input className="form-control col-6" type="text" ref={ref => this.addressInput = ref} />
+                        <input className="form-control form-control-sm col-6" type="text" ref={ref => this.addressInput = ref} />
                         <div ref={(ref) => { this.googleMapDiv = ref }} style={{ height: '66vh', width: '100%' }}></div>
                     </div>
                     <div className="col-6">

@@ -12,6 +12,7 @@ export default props =>
         <div className='h4'>Bem Vindo!</div>
         <hr />
         <p>Sistema para testar o Google Maps em React</p>
+        <p>Documentação: <a href="https://developers.google.com/maps/documentation/javascript/overview">https://developers.google.com/maps/documentation/javascript/overview</a></p>
         <div className="card-group">
             <Link to="/map" className="card">
                 <img className="card-img-top" src={mapImg} alt="Card image cap" />
