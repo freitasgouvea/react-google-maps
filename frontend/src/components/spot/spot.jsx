@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import ReactDom from 'react-dom'
 import axios from 'axios'
 import Main from '../template/main'
 import { Loader } from '@googlemaps/js-api-loader';
@@ -71,7 +72,7 @@ export default class SpotCrud extends Component {
                 draggable: true
             });
 
-            const input = this.state.spot.address || ''
+            const input = ReactDom.findDOMNode(this.addressInput)
             const searchBox = new google.maps.places.SearchBox(input);
             map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
 
@@ -81,7 +82,7 @@ export default class SpotCrud extends Component {
 
             searchBox.addListener("places_changed", () => {
                 const places = searchBox.getPlaces();
-                if (places.length == 0) {
+                if (places.length === 0) {
                     return;
                 }
                 const place = places[0]
@@ -96,6 +97,21 @@ export default class SpotCrud extends Component {
                     map: map,
                     draggable: true
                 })
+                this.setState({
+                    marker: this.marker
+                });
+                const lat = this.marker.getPosition().lat();
+                const lng = this.marker.getPosition().lng();
+                const cord = { lat: lat, lng: lng }
+                this.updateCordinates(cord);
+                const geocoder = new google.maps.Geocoder();
+                geocoder.geocode({ location: { lat: lat, lng: lng } }, (res) => {
+                    if (res == null || res.length === 0) {
+                        return;
+                    } else {
+                        this.updateAddress(res[0].formatted_address)
+                    }
+                });
                 if (place.geometry.viewport) {
                     bounds.union(place.geometry.viewport);
                 } else {
@@ -230,6 +246,7 @@ export default class SpotCrud extends Component {
             return (
                 <div className="row">
                     <div className="col-6">
+                        <input className="form-control col-6" type="text" ref={ref => this.addressInput = ref} />
                         <div ref={(ref) => { this.googleMapDiv = ref }} style={{ height: '66vh', width: '100%' }}></div>
                     </div>
                     <div className="col-6">
@@ -359,11 +376,11 @@ export default class SpotCrud extends Component {
                     <td>{spot.cordinates.lng}</td>
                     <td>{spot.maxHeight}</td>
                     <td>
-                        <button className="btn btn-warning"
+                        <button className="btn btn-sm btn-warning"
                             onClick={() => this.load(spot)}>
                             <i className="fa fa-pencil"></i>
                         </button>
-                        <button className="btn btn-danger ml-2"
+                        <button className="btn btn-sm btn-danger ml-2"
                             onClick={() => this.remove(spot)}>
                             <i className="fa fa-trash"></i>
                         </button>

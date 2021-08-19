@@ -8,7 +8,7 @@
         "lng": -46.68939134530981
       },
       "maxHeight": "200",
-      "id": 4
+      "id": 1
     },
     {
       "type": "spot",
@@ -18,7 +18,7 @@
         "lng": -46.631911191857036
       },
       "maxHeight": "500",
-      "id": 5
+      "id": 2
     },
     {
       "type": "spot",
@@ -28,7 +28,7 @@
         "lng": -46.73560697429042
       },
       "maxHeight": "360",
-      "id": 6
+      "id": 3
     },
     {
       "type": "spot",
@@ -38,7 +38,7 @@
         "lng": -46.71587026870858
       },
       "maxHeight": "430",
-      "id": 7
+      "id": 4
     },
     {
       "type": "spot",
@@ -48,7 +48,7 @@
         "lng": -46.626723196333096
       },
       "maxHeight": "380",
-      "id": 8
+      "id": 5
     },
     {
       "type": "spot",
@@ -58,7 +58,7 @@
         "lng": -46.635270212936405
       },
       "maxHeight": "620",
-      "id": 9
+      "id": 6
     },
     {
       "type": "report",
@@ -68,7 +68,7 @@
         "lng": -46.674443679031626
       },
       "maxHeight": "0",
-      "id": 10
+      "id": 7
     },
     {
       "type": "report",
@@ -78,7 +78,7 @@
         "lng": -46.631289814758304
       },
       "maxHeight": "0",
-      "id": 11
+      "id": 8
     },
     {
       "type": "report",
@@ -88,17 +88,37 @@
         "lng": -46.64789805297852
       },
       "maxHeight": "0",
-      "id": 12
+      "id": 9
     },
     {
       "type": "spot",
-      "address": "R. Gabus Mendes, 26 - República, São Paulo - SP, 01043-010, Brazil",
+      "address": "R. Gabus Mendes, 26",
       "cordinates": {
         "lat": -23.544454354599193,
         "lng": -46.64313444976807
       },
       "maxHeight": "650",
-      "id": 13
+      "id": 10
+    },
+    {
+      "type": "spot",
+      "address": "Av. Afonso D'Escragnolle Taunay, 2",
+      "cordinates": {
+        "lat": -23.62985015644398,
+        "lng": -46.63521590447058
+      },
+      "maxHeight": "520",
+      "id": 11
+    },
+    {
+      "type": "report",
+      "address": "Rua Peixoto Gomide, 9",
+      "cordinates": {
+        "lat": -23.5539749,
+        "lng": -46.655794
+      },
+      "maxHeight": "0",
+      "id": 12
     }
   ]
 }
