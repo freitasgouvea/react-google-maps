@@ -107,7 +107,7 @@ export default class SpotCrud extends Component {
                 const lat = this.marker.getPosition().lat();
                 const lng = this.marker.getPosition().lng();
                 const cord = { lat: lat, lng: lng }
-                this.updateCospotrdinates(cord);
+                this.updateCordinates(cord);
                 const geocoder = new google.maps.Geocoder();
                 geocoder.geocode({ location: { lat: lat, lng: lng } }, (res) => {
                     if (res == null || res.length === 0) {
