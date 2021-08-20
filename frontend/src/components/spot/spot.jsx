@@ -81,7 +81,7 @@ export default class SpotCrud extends Component {
             map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
 
             map.addListener("bounds_changed", () => {
-              searchBox.setBounds(map.getBounds());
+                searchBox.setBounds(map.getBounds());
             });
 
             searchBox.addListener("places_changed", () => {
@@ -242,13 +242,21 @@ export default class SpotCrud extends Component {
         this.setState({ spot })
     }
 
+    renderMap() {
+        return (
+            <div>
+                <input className="form-control form-control-sm" type="text" placeholder="Pesquisar" ref={ref => this.addressInput = ref} />
+                <div ref={(ref) => { this.googleMapDiv = ref }} style={{ height: '66vh', width: '100%' }}></div>
+            </div>
+        )
+    }
+
     renderForm() {
         if (this.state.formVisible) {
             return (
                 <div className="row">
                     <div className="col-6">
-                        <input className="form-control form-control-sm" type="text" placeholder="Pesquisar" ref={ref => this.addressInput = ref} />
-                        <div ref={(ref) => { this.googleMapDiv = ref }} style={{ height: '66vh', width: '100%' }}></div>
+                        {this.renderMap()}
                     </div>
                     <div className="col-6">
                         <div className="form">
@@ -324,9 +332,9 @@ export default class SpotCrud extends Component {
 
     load(spotParam) {
         this.setState({ spot: spotParam, formVisible: true, listVisible: false })
-        setTimeout(()=>{
+        setTimeout(() => {
             this.initMap()
-        },100);
+        }, 100);
     }
 
     remove(spot) {
@@ -343,7 +351,7 @@ export default class SpotCrud extends Component {
                     <table className="table mt-4">
                         <thead>
                             <tr>
-                                <th>ID</th>
+                                <th>Tipo</th>
                                 <th>Endereço</th>
                                 <th>Latitude</th>
                                 <th>Longitude</th>
@@ -374,7 +382,7 @@ export default class SpotCrud extends Component {
         return this.state.list.map(spot => {
             return (
                 <tr key={spot.id}>
-                    <td>{spot.id}</td>
+                    <td>{spot.type}</td>
                     <td>{spot.address}</td>
                     <td>{spot.cordinates.lat}</td>
                     <td>{spot.cordinates.lng}</td>

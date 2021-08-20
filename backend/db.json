@@ -112,10 +112,10 @@
     },
     {
       "type": "report",
-      "address": "Av. Higienópolis, 529 - Higienópolis",
+      "address": "Av. Higienópolis, 619",
       "cordinates": {
-        "lat": -23.54347,
-        "lng": -46.6569891
+        "lat": -23.543086405635844,
+        "lng": -46.65765965225372
       },
       "maxHeight": "0",
       "id": 12

@@ -1,7 +1,11 @@
 import React, { Component } from 'react';
+import { useHistory } from "react-router-dom";
 import axios from 'axios'
 import Main from '../template/main'
 import { Loader } from '@googlemaps/js-api-loader';
+
+import iconSpot from '../../assets/imgs/place.svg'
+import iconReport from '../../assets/imgs/warning.svg'
 
 const headerProps = {
     icon: 'map',
@@ -46,14 +50,20 @@ export default class Map extends Component {
             var map = new google.maps.Map(
                 this.googleMapDiv,
                 defaultMapOptions);
-            const image = "https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png";
             if (this.state.list !== undefined && this.state.list.length >= 1) {
                 for (const i of this.state.list) {
+                    let imageIcon
+                    if (i.type === 'spot') {
+                        imageIcon = iconSpot
+                    }
+                    if (i.type === 'report') {
+                        imageIcon = iconReport
+                    }
                     const marker = new google.maps.Marker({
                         position: i.cordinates,
                         map,
                         title: i.address,
-                        icon: image
+                        icon: imageIcon
                     });
                     const contentString =
                         '<div id="content">' +
@@ -89,8 +99,8 @@ export default class Map extends Component {
         let list
         axios(baseUrl).then(resp => {
             list = resp.data
+            this.setState({ list })
             if (event.target.value === null || event.target.value === 'all') {
-                this.setState({ list })
                 this.initMap()
             } else {
                 list = this.state.list.filter(spot => spot.type === event.target.value)
