@@ -61,9 +61,14 @@ export default class Route extends Component {
         });
     }
     updateRequest(event) {
-        const request = { ...this.state.request }
-        request[event.target.name] = event.target.value
-        this.setState({ request })
+        const { name, value } = event.target;
+    
+        this.setState(prevState => ({
+            request: {
+                ...prevState.request,
+                [name]: value
+            }
+        }));
     }
     calcRoute() {
         if (this.state.directionsService !== undefined) {
