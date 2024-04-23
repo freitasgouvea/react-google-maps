@@ -187,15 +187,24 @@ export default class SpotCrud extends Component {
     }
 
     updateCordinates(latLng) {
-        const spot = { ...this.state.spot }
-        spot['cordinates'] = { lat: latLng.lat, lng: latLng.lng }
-        this.setState({ spot })
+        this.setState(prevState => ({
+            spot: {
+                ...prevState.spot,
+                cordinates: {
+                    lat: latLng.lat(),
+                    lng: latLng.lng()
+                }
+            }
+        }));
     }
 
     updateAddress(address) {
-        const spot = { ...this.state.spot }
-        spot['address'] = address
-        this.setState({ spot })
+        this.setState(prevState => ({
+            spot: {
+                ...prevState.spot,
+                address: address
+            }
+        }));
     }
 
     clear() {
@@ -226,20 +235,28 @@ export default class SpotCrud extends Component {
     }
 
     updateField(event) {
-        const spot = { ...this.state.spot }
-        spot[event.target.name] = event.target.value
-        this.setState({ spot })
+        const { name, value } = event.target;
+    
+        this.setState(prevState => ({
+            spot: {
+                ...prevState.spot,
+                [name]: value
+            }
+        }));
     }
 
     updateCordinateField(event) {
-        const spot = { ...this.state.spot }
-        if (event.target.name === 'lat') {
-            spot['cordinates'].lat = event.target.value
-        }
-        if (event.target.name === 'lng') {
-            spot['cordinates'].lng = event.target.value
-        }
-        this.setState({ spot })
+        const { name, value } = event.target;
+    
+        this.setState(prevState => ({
+            spot: {
+                ...prevState.spot,
+                cordinates: {
+                    ...prevState.spot.cordinates,
+                    [name]: value
+                }
+            }
+        }));
     }
 
     renderMap() {
@@ -338,12 +355,17 @@ export default class SpotCrud extends Component {
     }
 
     remove(spot) {
-        axios.delete(`${baseUrl}/${spot.id}`).then(resp => {
-            const list = this.state.list.filter(s => s !== spot)
-            this.setState({ list })
-        })
+        axios.delete(`${baseUrl}/${spot.id}`)
+            .then(resp => {
+                this.setState(prevState => ({
+                    list: prevState.list.filter(s => s.id !== spot.id)
+                }));
+            })
+            .catch(error => {
+                console.error('Failed to delete the spot:', error);
+            });
     }
-
+    
     renderTable() {
         if (this.state.listVisible) {
             return (
