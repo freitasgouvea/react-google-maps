@@ -13,7 +13,7 @@ const headerProps = {
 const baseUrl = 'http://localhost:3001/spots'
 
 const loader = new Loader({
-    apiKey: "AIzaSyBTdaly7le-SH4H3nEofhl2UEWWYpX0WJE",
+    apiKey: process.env.API_KEY,
     version: "weekly",
     libraries: ["places"]
 });
